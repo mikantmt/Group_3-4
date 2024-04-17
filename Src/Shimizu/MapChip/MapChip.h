@@ -1,10 +1,10 @@
 #pragma once
 #include "DxLib.h"
-const int MAPCIP_X_SIZE = 64;
-const int MAPCIP_Y_SIZE = 64;
+const int MAPCIP_X_SIZE = 32;
+const int MAPCIP_Y_SIZE = 32;
 
-const int MAPCIP_X_MAXNUM = 20;
-const int MAPCIP_Y_MAXNUM = 12;
+const int MAPCIP_X_MAXNUM = 40;
+const int MAPCIP_Y_MAXNUM = 24;
 
 //マップの種類
 enum MAP_TYPE
@@ -47,7 +47,7 @@ private:
 	//マップチップのファイルパス
 	const char MapCipFilePath[MAPCIP_TYPE_NUM][256] =
 	{
-		"../Data/MapChip/FullBlock.png",	//Mapのマップチップ
+		"../Data/Map/map.png",	//Mapのマップチップ
 	};
 
 	//各マップチップの数
@@ -59,7 +59,7 @@ private:
 	//各マップチップの画像分割数 [0] = x, [1] = y
 	const int MapCipImageSplitNum[MAPCIP_TYPE_NUM][2] =
 	{
-		{ 4, 4,},	//Map
+		{ 2, 2,},	//Map
 	};
 
 	int MapCipHandle[MAPIMAGE_TYPE_NUM];
