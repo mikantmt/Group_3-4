@@ -2,6 +2,7 @@
 #include "DxLib.h"
 #include "../../Common.h"
 #include "../Input/Input.h"
+#include "../../Oda/Scene/Scene.h"
 
 #define _1Frame 60
 #define COUNT_NUM 4

@@ -1,9 +1,10 @@
 #pragma once
 #include "../../Scene/Scene.h"
+#include "../../../Shimizu/Player/Player.h"
 
 class Play : public Scene {
 private:
-
+	Player player;
 public:
 	Collision collision;
 
