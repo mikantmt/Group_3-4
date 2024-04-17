@@ -2,6 +2,12 @@
 
 #include "DxLib.h"	//DXライブラリのインクルード
 #include "../Src/Common.h"
+#include "../Src/Shimizu/Input/Input.h"
+#include "../Src/Shimizu/Scene/Scene.h"
+#include "../Src/Shimizu/Scene/Title/SceneTitle.h"
+
+//extern宣言
+SCENE_ID g_CurrentSceneId = SCENE_ID_INIT_TITLE;
 
 // Win32アプリケーションは WinMain関数 から始まる
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
@@ -23,6 +29,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//-----------------------------------------
 	//一番最初に１回だけやる処理をここに書く
 
+	//クラス宣言
+	Scene* Scene = nullptr;
+
 	//-----------------------------------------
 
 	//ゲームメインループ
@@ -37,11 +46,42 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		//画面に表示されたものを初期化
 		ClearDrawScreen();
 
+		StepInput();
+
+		switch (g_CurrentSceneId)
+		{
+
+		case SCENE_ID_INIT_TITLE:
+
+			Scene = new Title;
+			if (Scene) {
+				Scene->Init();
+			}
+
+			break;
+		case SCENE_ID_LOOP_TITLE:
+			
+			if (Scene) {
+				Scene->Step();
+				Scene->Draw();
+			}
+
+			
+			break;
+		case SCENE_ID_FIN_TITLE:
+			if (Scene) {
+				Scene->Fin();
+				delete Scene;
+				Scene = nullptr;
+			}
+			break;
+		default:
+			break;
+		}
+
 		//-----------------------------------------
 		//ここからゲームの本体を書くことになる
 		//-----------------------------------------
-		
-
 
 		//-----------------------------------------
 		//ループの終わりに
