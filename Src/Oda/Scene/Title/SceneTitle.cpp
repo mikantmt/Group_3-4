@@ -1,6 +1,5 @@
 #include "SceneTitle.h"
 
-
 // タイトル初期化
 void Title::Init()
 {
@@ -46,5 +45,5 @@ void Title::Draw()
 void Title::Fin()
 {
 	// プレイシーンに遷移
-	g_CurrentSceneId = SCENE_ID_INIT_SELECT;
+	g_CurrentSceneId = SCENE_ID_INIT_PLAY;
 }

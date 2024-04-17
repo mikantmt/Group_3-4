@@ -3,8 +3,11 @@
 #include "DxLib.h"	//DXライブラリのインクルード
 #include "../Src/Common.h"
 #include "../Src/Shimizu/Input/Input.h"
-#include "../Src/Shimizu/Scene/Scene.h"
-#include "../Src/Shimizu/Scene/Title/SceneTitle.h"
+#include "../Src/Oda/Scene/Scene.h"
+#include "../Src/Oda/Scene/Title/SceneTitle.h"
+#include "../Src/Oda/Scene/Play/ScenePlay.h"
+#include "../Src/Oda/Scene/Result/SceneResult.h"
+
 
 //extern宣言
 SCENE_ID g_CurrentSceneId = SCENE_ID_INIT_TITLE;
@@ -69,6 +72,56 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			
 			break;
 		case SCENE_ID_FIN_TITLE:
+			if (Scene) {
+				Scene->Fin();
+				delete Scene;
+				Scene = nullptr;
+			}
+			break;
+
+		case SCENE_ID_INIT_PLAY:
+
+			Scene = new Play;
+			if (Scene) {
+				Scene->Init();
+			}
+
+			break;
+		case SCENE_ID_LOOP_PLAY:
+
+			if (Scene) {
+				Scene->Step();
+				Scene->Draw();
+			}
+
+
+			break;
+		case SCENE_ID_FIN_PLAY:
+			if (Scene) {
+				Scene->Fin();
+				delete Scene;
+				Scene = nullptr;
+			}
+			break;
+
+		case SCENE_ID_INIT_RESULT:
+
+			Scene = new Result;
+			if (Scene) {
+				Scene->Init();
+			}
+
+			break;
+		case SCENE_ID_LOOP_RESULT:
+
+			if (Scene) {
+				Scene->Step();
+				Scene->Draw();
+			}
+
+
+			break;
+		case SCENE_ID_FIN_RESULT:
 			if (Scene) {
 				Scene->Fin();
 				delete Scene;

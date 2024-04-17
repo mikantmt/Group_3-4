@@ -1,8 +1,9 @@
 #pragma once
 #include "DxLib.h"
 #include "../../Common.h"
-#include "../Input/Input.h"
-#include "../Collision/Collision.h"
+#include "../../Shimizu/Input/Input.h"
+#include "../../Shimizu/Collision/Collision.h"
+
 
 class Scene {
 	public:
