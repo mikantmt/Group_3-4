@@ -2,15 +2,17 @@
 
 void Player::Init() {
 	Player_X = 0.0f;
-	Player_Y = 700.0f;
+	Player_Y = 0.0f;
 	Yspeed   = 0.0f;
 
 	JumpFlg = false;
 }
 
 void Player::Player_Move() {
+	//ˆÚ“®ˆ—
 	Player_X++;
 
+	//ƒWƒƒƒ“ƒvˆ—==============================
 	Yspeed += GRAVITY;
 	Player_Y += Yspeed;
 
@@ -22,11 +24,14 @@ void Player::Player_Move() {
 		Player_Y -= JUMPPOWER;
 	}
 
+	//‚±‚±‚Í‰¼’u‚«
 	if (Player_Y > 750.0f) {
 		Player_Y = 750.0f;
 		JumpFlg = false;
 		Yspeed = 0.0f;
 	}
+	//==========================================
+	
 }
 
 void Player::Draw() {

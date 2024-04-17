@@ -41,7 +41,7 @@ void MiniGameBase::CountDown(float limit) {
 float MiniGameBase::ScopingRand(float min, float max) {
 	float rand;
 
-	rand = GetRand(max);
+	rand = GetRand((float)max);
 
 	if (rand < min) {
 		return ScopingRand(min, max);
