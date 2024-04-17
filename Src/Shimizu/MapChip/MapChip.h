@@ -2,6 +2,7 @@
 #include "DxLib.h"
 const int MAPCIP_X_SIZE = 32;
 const int MAPCIP_Y_SIZE = 32;
+const int MAP_SIZE = 32;
 
 const int MAPCIP_X_MAXNUM = 40;
 const int MAPCIP_Y_MAXNUM = 24;
