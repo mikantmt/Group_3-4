@@ -1,8 +1,12 @@
 #pragma once
 #include "../../Scene/Scene.h"
 
+// タイトルの背景パス
+constexpr char TITLE_BG_PATH[128] = "../Data/TitleScene/TentativeTitleBG.png";
+
 class Title : public Scene {
 private:
+	int TitleBGHandle;		// タイトル背景ハンドル
 
 public:
 	Collision collision;

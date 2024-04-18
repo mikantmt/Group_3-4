@@ -7,6 +7,9 @@ void Title::Init()
 	// スコアの初期化
 	Score::Init();
 
+	// タイトル背景ハンドル
+	TitleBGHandle = LoadGraph(TITLE_BG_PATH);
+
 	// タイトルのループ処理へ遷移
 	g_CurrentSceneId = SCENE_ID_LOOP_TITLE;
 }
@@ -42,12 +45,18 @@ void Title::Draw()
 
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
+	// タイトル背景描画
+	DrawGraph(0, 0, TitleBGHandle, true);
+
 	DrawFormatString(SCREEN_SIZE_X / 2, SCREEN_SIZE_Y / 2, GetColor(0, 255, 0), "タイトル");
 }
 
 // タイトル終了処理
 void Title::Fin()
 {
+	// タイトル背景ハンドル
+	DeleteGraph(TitleBGHandle);
+	
 	// プレイシーンに遷移
 	g_CurrentSceneId = SCENE_ID_INIT_PLAY;
 }

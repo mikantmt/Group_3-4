@@ -1,8 +1,12 @@
 #pragma once
 #include "../../Scene/Scene.h"
 
+// リザルトの背景パス
+constexpr char RESULT_BG_PATH[128] = "../Data/ResultScene/TentativeClearBG.png";
+
 class Result : public Scene {
 private:
+	int ResultBGHandle;		// リザルト背景ハンドル
 
 public:
 	Collision collision;

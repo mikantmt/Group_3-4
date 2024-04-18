@@ -7,6 +7,9 @@ void Result::Init()
 	// ハイスコアの更新
 	Score::Update();
 
+	// リザルト背景ハンドル
+	ResultBGHandle = LoadGraph(RESULT_BG_PATH);
+
 	// タイトルのループ処理へ遷移
 	g_CurrentSceneId = SCENE_ID_LOOP_RESULT;
 }
@@ -42,12 +45,18 @@ void Result::Draw()
 
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
+	// リザルト背景描画
+	DrawGraph(0, 0, ResultBGHandle, true);
+
 	DrawFormatString(SCREEN_SIZE_X / 2, SCREEN_SIZE_Y / 2, GetColor(0, 255, 0), "リザルト");
 }
 
 // タイトル終了処理
 void Result::Fin()
 {
+	// リザルト背景ハンドル
+	DeleteGraph(ResultBGHandle);
+
 	// プレイシーンに遷移
 	g_CurrentSceneId = SCENE_ID_INIT_TITLE;
 }
