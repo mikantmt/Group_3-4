@@ -142,6 +142,7 @@ void Play::MapCollision() {
 				if (dirArray[2]) {
 					// ★ここを考える
 					// めり込み量を計算する
+					player.ActiveFlg = true;
 					int overlap = Bx + Bw - Ax;
 					player.SetNextPosX(Ax + overlap);
 				}
@@ -150,6 +151,7 @@ void Play::MapCollision() {
 				if (dirArray[3]) {
 					// ★ここを考える
 					// めり込み量を計算する
+					player.ActiveFlg = true;
 					int overlap = Ax + Aw - Bx;
 					player.SetNextPosX(Ax - overlap);
 				}
