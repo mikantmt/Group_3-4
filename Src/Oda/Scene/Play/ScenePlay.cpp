@@ -6,6 +6,9 @@ void Play::Init()
 	player.Init();
 
 	maps.Init();
+
+	BackGroundHandle = LoadGraph("../Data/PlayScene/BackGround.png");
+
 	// タイトルのループ処理へ遷移
 	g_CurrentSceneId = SCENE_ID_LOOP_PLAY;
 }
@@ -29,6 +32,8 @@ void Play::Step()
 // プレイ描画処理
 void Play::Draw()
 {
+	DrawGraph(0, 0, BackGroundHandle, true);
+
 	maps.Draw(screen.GetScreenX());
 
 	player.Draw(screen.GetScreenX());

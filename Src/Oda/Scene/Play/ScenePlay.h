@@ -12,9 +12,7 @@ private:
 	Collision collision;
 	Screen screen;
 
-	//PressEnter“§‰ß•Ï”
-	int m_BlendAlpha = 255;
-	bool m_blendfrag = false;
+	int BackGroundHandle;
 
 	//ƒ}ƒbƒv‚Æ‚Ì“–‚½‚è”»’è
 	void MapCollision();
