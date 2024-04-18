@@ -24,7 +24,7 @@ void Play::Step()
 
 	player.UpdatePos();
 
-	if (IsKeyPush(KEY_INPUT_A)) {
+	if (player.ActiveFlg) {
 		g_CurrentSceneId = SCENE_ID_FIN_PLAY;
 	}
 }

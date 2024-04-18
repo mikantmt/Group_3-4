@@ -21,6 +21,7 @@ private:
 public:
 	float Yspeed;		//プレイヤーのYスピード
 	bool  JumpFlg;		//初期値はfalse
+	bool  ActiveFlg;
 
 	void Init();
 	void Step();

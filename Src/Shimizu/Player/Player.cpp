@@ -5,9 +5,10 @@ void Player::Init() {
 	Player_Y = SCREEN_SIZE_Y - 300;
 	Yspeed   = 0.0f;
 
-	gamebase.Init();
-
+	ActiveFlg = false;
 	JumpFlg = false;
+
+	gamebase.Init();
 }
 
 void Player::Step() {
@@ -28,6 +29,10 @@ void Player::Step() {
 		PlayerNext_Y -= JUMPPOWER;
 	}
 	//==========================================
+
+	if (SCREEN_SIZE_Y < Player_Y) {
+		ActiveFlg = true;
+	}
 }
 
 void Player::Draw(float X) {
