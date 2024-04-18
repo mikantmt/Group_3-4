@@ -4,7 +4,7 @@
 #include "../GameBase/MiniGameBase.h"
 
 #define GRAVITY		0.15f //重力
-#define JUMPPOWER	3.6f  //ジャンプパワー
+#define JUMPPOWER	5.0f  //ジャンプパワー
 
 #define PLAYER_HEIGHT 64
 #define PLAYER_WIDTH  32

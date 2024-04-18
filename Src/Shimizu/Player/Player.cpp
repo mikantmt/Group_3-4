@@ -2,7 +2,7 @@
 
 void Player::Init() {
 	Player_X = 160.0f;
-	Player_Y = SCREEN_SIZE_Y - 500;
+	Player_Y = SCREEN_SIZE_Y - 300;
 	Yspeed   = 0.0f;
 
 	gamebase.Init();
@@ -14,7 +14,7 @@ void Player::Step() {
 	PlayerNext_X = Player_X;
 	PlayerNext_Y = Player_Y;
 
-	PlayerNext_X++;
+	PlayerNext_X+=2;
 
 	//ÉWÉÉÉìÉvèàóù==============================
 	Yspeed += GRAVITY;
