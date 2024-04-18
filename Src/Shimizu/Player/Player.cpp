@@ -2,7 +2,7 @@
 
 void Player::Init() {
 	Player_X = 160.0f;
-	Player_Y = SCREEN_SIZE_Y - 200;
+	Player_Y = SCREEN_SIZE_Y - 500;
 	Yspeed   = 0.0f;
 
 	gamebase.Init();

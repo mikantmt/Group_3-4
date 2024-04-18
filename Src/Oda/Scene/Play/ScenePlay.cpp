@@ -128,7 +128,7 @@ void Play::MapCollision() {
 			int Bh = MAP_SIZE;
 
 			// ※X方向のみに移動したと仮定した座標で当たり判定をチェックします
-			Ay = player.GetPosY();
+			Ay = player.GetNextPosY();
 			Ax = player.GetNextPosX();
 
 			// 当たっているかチェック
@@ -137,16 +137,16 @@ void Play::MapCollision() {
 				if (dirArray[2]) {
 					// ★ここを考える
 					// めり込み量を計算する
-					int overlap = By + Bh - Ay;
-					player.SetNextPosY(Ay + overlap);
+					int overlap = Bx + Bw - Ax;
+					player.SetNextPosX(Ax + overlap);
 				}
 
 				// 右方向の修正
 				if (dirArray[3]) {
 					// ★ここを考える
 					// めり込み量を計算する
-					int overlap = Ay + Ah - By;
-					player.SetNextPosY(Ay - overlap);
+					int overlap = Ax + Aw - Bx;
+					player.SetNextPosX(Ax - overlap);
 				}
 			}
 		}

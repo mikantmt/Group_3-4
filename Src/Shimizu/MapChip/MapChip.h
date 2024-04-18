@@ -4,7 +4,7 @@ const int MAPCIP_X_SIZE = 32;
 const int MAPCIP_Y_SIZE = 32;
 const int MAP_SIZE = 32;
 
-const int MAPCIP_X_MAXNUM = 40;
+const int MAPCIP_X_MAXNUM = 53;
 const int MAPCIP_Y_MAXNUM = 24;
 
 //マップの種類
@@ -42,7 +42,7 @@ private:
 	//csvのファイルパス
 	const char CsvFilePath[MAP_TYPE_NUM][256] =
 	{
-		"../Data/Map_csv/Map1.csv",	//MAP_TYPE_STAGE1
+		"../Data/Map_csv/Map2.csv",	//MAP_TYPE_STAGE1
 	};
 
 	//マップチップのファイルパス
