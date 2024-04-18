@@ -1,10 +1,12 @@
 #pragma once
 
 // スコアの加算数
-#define ADD_SCORE_NUM (1)
+const int ADD_SCORE_NUM = 1;
 
 class Score {
 public:
+	static FILE* fScore;
+
 	static int ScoreNum;		// スコアの値
 	static int HighScoreNum;	// ハイスコアの値
 

@@ -1,8 +1,12 @@
 #include "SceneTitle.h"
+#include "../../Score/Score.h"
 
 // タイトル初期化
 void Title::Init()
 {
+	// スコアの初期化
+	Score::Init();
+
 	// タイトルのループ処理へ遷移
 	g_CurrentSceneId = SCENE_ID_LOOP_TITLE;
 }

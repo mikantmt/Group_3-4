@@ -1,7 +1,7 @@
 #include "DxLib.h"
 #include "Score.h"
 
-FILE* fScore;
+FILE* Score::fScore;
 
 int Score::ScoreNum;			// スコアの値
 int Score::HighScoreNum;	// ハイスコアの値
@@ -20,13 +20,13 @@ void Score::Reset()
 
 	// ファイルを開く(ない場合は自動で新規作成する)
 	errno_t err;
-	err = fopen_s(&fScore, "Data/Score/Score.txt", "w+");
+	err = fopen_s(&Score::fScore, "Data/Score/Score.txt", "w+");
 
 	// ファイルが開けた・または新規作成できた
-	if (fScore != NULL)
+	if (Score::fScore != NULL)
 	{
 		// ファイルは閉じる
-		fclose(fScore);
+		fclose(Score::fScore);
 	}
 }
 
@@ -47,13 +47,13 @@ void Score::Update()
 
 		// ファイルを開く(ない場合は自動で新規作成する)
 		errno_t err;
-		err = fopen_s(&fScore, "Data/Score/Score.txt", "w+");
+		err = fopen_s(&Score::fScore, "Data/Score/Score.txt", "w+");
 
 		// ファイルが開けた・または新規作成できた
-		if (fScore != NULL)
+		if (Score::fScore != NULL)
 		{
 			// ファイルは閉じる
-			fclose(fScore);
+			fclose(Score::fScore);
 		}
 	}
 }
