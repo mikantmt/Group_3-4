@@ -1,9 +1,11 @@
 #include "Player.h"
 
 void Player::Init() {
-	Player_X = 0.0f;
-	Player_Y = 0.0f;
+	Player_X = 160.0f;
+	Player_Y = SCREEN_SIZE_Y - 200;
 	Yspeed   = 0.0f;
+
+	gamebase.Init();
 
 	JumpFlg = false;
 }
@@ -12,7 +14,6 @@ void Player::Step() {
 	PlayerNext_X = Player_X;
 	PlayerNext_Y = Player_Y;
 
-	//à⁄ìÆèàóù
 	PlayerNext_X++;
 
 	//ÉWÉÉÉìÉvèàóù==============================
@@ -26,10 +27,11 @@ void Player::Step() {
 	if (JumpFlg) {
 		PlayerNext_Y -= JUMPPOWER;
 	}
+	//==========================================
 }
 
-void Player::Draw() {
-	DrawBox(Player_X, Player_Y, Player_X + PLAYER_WIDTH, Player_Y + PLAYER_HEIGHT, GetColor(255, 0, 0), false);
+void Player::Draw(float X) {
+	DrawBox(Player_X - X, Player_Y, Player_X + PLAYER_WIDTH - X, Player_Y + PLAYER_HEIGHT, GetColor(255, 0, 0), false);
 }
 
 

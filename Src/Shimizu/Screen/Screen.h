@@ -1,6 +1,6 @@
 #pragma once
 #include "../../Shimizu/Screen/Screen.h"
-#include "../MapChip/MapChip.h"
+#include "../../Common.h"
 
 class Screen {
 private:
@@ -11,7 +11,7 @@ private:
 public:
 	// スクリーンのステップ
 	// 引数プレイヤーX座標、Y座標
-	void StepScreen(float x, float y, int MAP_X_SIZE);
+	void StepScreen(float x, float y);
 
 	//スクリーンのＸ座標を取得
 	float GetScreenX();

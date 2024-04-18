@@ -13,7 +13,7 @@ void Play::Init()
 // プレイ通常処理
 void Play::Step()
 {
-	screen.StepScreen(player.GetPosX(), player.GetPosY(), MAPCIP_X_SIZE);
+	screen.StepScreen(player.GetPosX(), player.GetPosY());
 
 	player.Step();
 
@@ -31,7 +31,7 @@ void Play::Draw()
 {
 	maps.Draw(screen.GetScreenX());
 
-	player.Draw();
+	player.Draw(screen.GetScreenX());
 
 	DrawFormatString(SCREEN_SIZE_X / 2, SCREEN_SIZE_Y / 2, GetColor(0, 255, 0), "プレイ");
 }
@@ -51,8 +51,6 @@ void Play::MapCollision() {
 		{
 			if (maps.m_FileReadMapData[mapIndexY][mapIndexX] == -1)
 				continue;
-
-			DrawBox(mapIndexX * 32, mapIndexY * 32, mapIndexX * 32 + 32, mapIndexY * 32 + 32, GetColor(255, 0, 0), false);
 
 			// ★ここを考える
 			// どの方向に進んでいたかチェック

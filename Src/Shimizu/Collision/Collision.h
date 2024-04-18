@@ -32,6 +32,7 @@ public:
 	bool RectToMousePointa(float X, float Y, float W, float H);
 
 	//矩形とクリック当たり判定
+	//引数(X座標,Y座標,幅,高さ)
 	bool IsClickOnRect(float X, float Y, float W, float H);
 };
 

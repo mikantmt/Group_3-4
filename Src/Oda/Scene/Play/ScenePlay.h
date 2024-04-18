@@ -11,18 +11,16 @@ private:
 	MapChip maps;
 	Collision collision;
 	Screen screen;
-public:
 
 	//PressEnter透過変数
 	int m_BlendAlpha = 255;
 	bool m_blendfrag = false;
 
-
+	//マップとの当たり判定
+	void MapCollision();
+public:
 	void Init();
 	void Step();
 	void Draw();
 	void Fin();
-
-	//マップとの当たり判定
-	void MapCollision();
 };

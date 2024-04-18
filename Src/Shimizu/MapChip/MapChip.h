@@ -48,7 +48,7 @@ private:
 	//マップチップのファイルパス
 	const char MapCipFilePath[MAPCIP_TYPE_NUM][256] =
 	{
-		"../Data/Map/map.png",	//Mapのマップチップ
+		"../Data/Map/maps.png",	//Mapのマップチップ
 	};
 
 	//各マップチップの数

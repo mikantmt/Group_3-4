@@ -3,6 +3,7 @@
 void MiniGameBase::Init() {
 	IsFin = false;
 	IsClear = false;
+	Startlimit = LimitTime;
 	GamePoint = 0;
 	Handle[0] = LoadGraph("../Data/PlayScene/start/one.png");
 	Handle[1] = LoadGraph("../Data/PlayScene/start/two.png");
