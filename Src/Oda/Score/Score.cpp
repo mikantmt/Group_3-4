@@ -31,9 +31,9 @@ void Score::Reset()
 }
 
 // スコアの加算
-void Score::Add()
+void Score::Add(int AddScoreNum)
 {
-	Score::ScoreNum += ADD_SCORE_NUM;
+	Score::ScoreNum += AddScoreNum;
 }
 
 // ハイスコアの更新

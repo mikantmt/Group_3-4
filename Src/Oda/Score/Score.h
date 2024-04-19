@@ -1,8 +1,5 @@
 #pragma once
 
-// スコアの加算数
-const int ADD_SCORE_NUM = 1;
-
 class Score {
 public:
 	static FILE* fScore;
@@ -17,7 +14,7 @@ public:
 	static void Reset();
 
 	// スコアの加算
-	static void Add();
+	static void Add(int AddScoreNum);
 
 	// ハイスコアの更新
 	static void Update();
