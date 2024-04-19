@@ -4,9 +4,11 @@ void Player::Init() {
 	Player_X = 160.0f;
 	Player_Y = SCREEN_SIZE_Y - 300;
 	Yspeed   = 0.0f;
+	JumpCount = 0.0f;
 
 	ActiveFlg = false;
-	JumpFlg = false;
+	JumpFlg   = false;
+	AirFlg    = false;
 
 	gamebase.Init();
 }
@@ -21,15 +23,18 @@ void Player::Step() {
 	Yspeed += GRAVITY;
 	PlayerNext_Y += Yspeed;
 
-	if (IsKeyPush(KEY_INPUT_SPACE)) {
+	//スペースキーが押されている && JumpCountが6以下
+	if (IsKeyKeep(KEY_INPUT_SPACE) && JumpCount < 6 && !AirFlg) {
 		JumpFlg = true;
+		JumpCount++;
 	}
 
 	if (JumpFlg) {
-		PlayerNext_Y -= JUMPPOWER;
+		PlayerNext_Y -= (JUMPPOWER * JumpCount);
 	}
 	//==========================================
 
+	//スクリーンより下に行けばゲームオーバー
 	if (SCREEN_SIZE_Y < Player_Y) {
 		ActiveFlg = true;
 	}

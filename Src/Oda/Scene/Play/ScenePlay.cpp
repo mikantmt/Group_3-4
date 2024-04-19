@@ -98,9 +98,13 @@ void Play::MapCollision() {
 					int overlap = Ay + Ah - By;
 					player.SetNextPosY(Ay - overlap);
 					player.JumpFlg = false;
+					player.AirFlg = false;
 					player.Yspeed = 0.0f;
+					player.JumpCount = 0.0f;
 				}
 			}
+			else
+				player.JumpFlg = true;
 		}
 	}
 
@@ -142,7 +146,6 @@ void Play::MapCollision() {
 				if (dirArray[2]) {
 					// ★ここを考える
 					// めり込み量を計算する
-					player.ActiveFlg = true;
 					int overlap = Bx + Bw - Ax;
 					player.SetNextPosX(Ax + overlap);
 				}
@@ -151,7 +154,6 @@ void Play::MapCollision() {
 				if (dirArray[3]) {
 					// ★ここを考える
 					// めり込み量を計算する
-					player.ActiveFlg = true;
 					int overlap = Ax + Aw - Bx;
 					player.SetNextPosX(Ax - overlap);
 				}

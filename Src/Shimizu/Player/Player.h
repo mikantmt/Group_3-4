@@ -3,8 +3,8 @@
 #include "../Input/Input.h"
 #include "../GameBase/MiniGameBase.h"
 
-#define GRAVITY		0.15f //重力
-#define JUMPPOWER	5.0f  //ジャンプパワー
+#define GRAVITY		0.18f //重力
+#define JUMPPOWER	1.0f  //ジャンプパワー
 
 #define PLAYER_HEIGHT 64
 #define PLAYER_WIDTH  32
@@ -20,8 +20,10 @@ private:
 	
 public:
 	float Yspeed;		//プレイヤーのYスピード
+	float JumpCount;	//ジャンプしてからのフレーム
 	bool  JumpFlg;		//初期値はfalse
-	bool  ActiveFlg;
+	bool  ActiveFlg;	//生存フラグ
+	bool  AirFlg;		//空中判定
 
 	void Init();
 	void Step();
