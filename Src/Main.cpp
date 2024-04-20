@@ -3,11 +3,18 @@
 #include "DxLib.h"	//DXライブラリのインクルード
 #include "../Src/Common.h"
 #include "../Src/Shimizu/Input/Input.h"
+#include "../Src/Shimizu/FrameMNG/FrameMNG.h"
 #include "../Src/Oda/Scene/Scene.h"
 #include "../Src/Oda/Scene/Title/SceneTitle.h"
 #include "../Src/Oda/Scene/Play/ScenePlay.h"
 #include "../Src/Oda/Scene/Result/SceneResult.h"
 
+// 設定フレームレート（60FPS）
+#define FRAME_RATE	(60)
+// 1フレームの時間（ミリ秒）
+#define FRAME_TIME	(1000 / FRAME_RATE)
+
+FrameRateInfo frame;
 
 //extern宣言
 SCENE_ID g_CurrentSceneId = SCENE_ID_INIT_TITLE;
@@ -40,107 +47,128 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//ゲームメインループ
 	while (ProcessMessage() != -1)
 	{
-		if (CheckHitKey(KEY_INPUT_ESCAPE) == 1)
-		{
-			//エスケープキーが押されたら終了
-			break;
+
+		// 現在の時間を取得
+		frame.currentTime = GetNowCount();
+
+		if (frame.calcFpsTime == 0.0f) {
+			frame.calcFpsTime = frame.currentTime;
+			frame.fps = (float)FRAME_RATE;
 		}
 
-		//画面に表示されたものを初期化
-		ClearDrawScreen();
-
-		StepInput();
-
-		switch (g_CurrentSceneId)
+		// 現在の時間が、前回のフレーム時より
+		// 1000/60ミリ秒(1/60秒)以上経過していたら処理を実行する
+		if (frame.currentTime - frame.lastFrameTime >= FRAME_TIME)
 		{
+			// フレーム実行時の時間を更新
+			frame.lastFrameTime = frame.currentTime;
 
-		case SCENE_ID_INIT_TITLE:
+			// フレーム数をカウント
+			frame.count++;
 
-			Scene = new Title;
-			if (Scene) {
-				Scene->Init();
+			if (CheckHitKey(KEY_INPUT_ESCAPE) == 1)
+			{
+				//エスケープキーが押されたら終了
+				break;
 			}
 
-			break;
-		case SCENE_ID_LOOP_TITLE:
-			
-			if (Scene) {
-				Scene->Step();
-				Scene->Draw();
+			//画面に表示されたものを初期化
+			ClearDrawScreen();
+
+			StepInput();
+
+			switch (g_CurrentSceneId)
+			{
+
+			case SCENE_ID_INIT_TITLE:
+
+				Scene = new Title;
+				if (Scene) {
+					Scene->Init();
+				}
+
+				break;
+			case SCENE_ID_LOOP_TITLE:
+
+				if (Scene) {
+					Scene->Step();
+					Scene->Draw();
+				}
+
+
+				break;
+			case SCENE_ID_FIN_TITLE:
+				if (Scene) {
+					Scene->Fin();
+					delete Scene;
+					Scene = nullptr;
+				}
+				break;
+
+			case SCENE_ID_INIT_PLAY:
+
+				Scene = new Play;
+				if (Scene) {
+					Scene->Init();
+				}
+
+				break;
+			case SCENE_ID_LOOP_PLAY:
+
+				if (Scene) {
+					Scene->Step();
+					Scene->Draw();
+				}
+
+
+				break;
+			case SCENE_ID_FIN_PLAY:
+				if (Scene) {
+					Scene->Fin();
+					delete Scene;
+					Scene = nullptr;
+				}
+				break;
+
+			case SCENE_ID_INIT_RESULT:
+
+				Scene = new Result;
+				if (Scene) {
+					Scene->Init();
+				}
+
+				break;
+			case SCENE_ID_LOOP_RESULT:
+
+				if (Scene) {
+					Scene->Step();
+					Scene->Draw();
+				}
+
+
+				break;
+			case SCENE_ID_FIN_RESULT:
+				if (Scene) {
+					Scene->Fin();
+					delete Scene;
+					Scene = nullptr;
+				}
+				break;
+			default:
+				break;
 			}
 
-			
-			break;
-		case SCENE_ID_FIN_TITLE:
-			if (Scene) {
-				Scene->Fin();
-				delete Scene;
-				Scene = nullptr;
-			}
-			break;
+			//-----------------------------------------
+			//ここからゲームの本体を書くことになる
+			//-----------------------------------------
 
-		case SCENE_ID_INIT_PLAY:
+			frame.CalcFPS();
 
-			Scene = new Play;
-			if (Scene) {
-				Scene->Init();
-			}
-
-			break;
-		case SCENE_ID_LOOP_PLAY:
-
-			if (Scene) {
-				Scene->Step();
-				Scene->Draw();
-			}
-
-
-			break;
-		case SCENE_ID_FIN_PLAY:
-			if (Scene) {
-				Scene->Fin();
-				delete Scene;
-				Scene = nullptr;
-			}
-			break;
-
-		case SCENE_ID_INIT_RESULT:
-
-			Scene = new Result;
-			if (Scene) {
-				Scene->Init();
-			}
-
-			break;
-		case SCENE_ID_LOOP_RESULT:
-
-			if (Scene) {
-				Scene->Step();
-				Scene->Draw();
-			}
-
-
-			break;
-		case SCENE_ID_FIN_RESULT:
-			if (Scene) {
-				Scene->Fin();
-				delete Scene;
-				Scene = nullptr;
-			}
-			break;
-		default:
-			break;
+			//-----------------------------------------
+			//ループの終わりに
+			//フリップ関数
+			ScreenFlip();
 		}
-
-		//-----------------------------------------
-		//ここからゲームの本体を書くことになる
-		//-----------------------------------------
-
-		//-----------------------------------------
-		//ループの終わりに
-		//フリップ関数
-		ScreenFlip();
-
 	}
 
 	//-----------------------------------------
