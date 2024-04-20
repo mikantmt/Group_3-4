@@ -10,6 +10,14 @@ void Player::Init() {
 	JumpFlg   = false;
 	AirFlg    = false;
 
+	Handle[EAnimeKindWalk][0] = LoadGraph("../Data/PlayScene/player/Rabbit1.png");
+	Handle[EAnimeKindWalk][1] = LoadGraph("../Data/PlayScene/player/Rabbit2.png");
+	animeUsedNum[EAnimeKindWalk] = 2;
+
+	currentAnimeKind = EAnimeKindWalk;
+	AnimeIndex = 0;
+	AnimeTime = 0.0f;
+
 	gamebase.Init();
 }
 
@@ -18,6 +26,8 @@ void Player::Step() {
 	PlayerNext_Y = Player_Y;
 
 	PlayerNext_X+=2;
+
+	currentAnimeKind = EAnimeKindWalk;
 
 	//ジャンプ処理==============================
 	Yspeed += GRAVITY;
@@ -32,7 +42,24 @@ void Player::Step() {
 	if (JumpFlg) {
 		PlayerNext_Y -= (JUMPPOWER * JumpCount);
 	}
+
+	if (IsKeyKeep(KEY_INPUT_SPACE)) {
+		currentAnimeKind = EAnimeKindJump;
+	}
 	//==========================================
+	
+	//アニメーション処理==============================
+	AnimeTime += 1.0f / FRAME_RATE;
+
+	if (AnimeTime >= CHANGE_ANIME_TIME) {
+		AnimeTime = 0.0f;	//リセット
+		AnimeIndex++;		//アニメ番号を進める
+
+		if (AnimeIndex >= animeUsedNum[currentAnimeKind]) {
+			AnimeIndex = 0;
+		}
+	}
+	//================================================
 
 	//スクリーンより下に行けばゲームオーバー
 	if (SCREEN_SIZE_Y < Player_Y) {
@@ -41,6 +68,7 @@ void Player::Step() {
 }
 
 void Player::Draw(float X) {
+	DrawGraph(Player_X - X, Player_Y, Handle[currentAnimeKind][AnimeIndex], true);
 	DrawBox(Player_X - X, Player_Y, Player_X + PLAYER_WIDTH - X, Player_Y + PLAYER_HEIGHT, GetColor(255, 0, 0), false);
 }
 
