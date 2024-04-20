@@ -2,25 +2,13 @@
 #include "DxLib.h"
 #include "../Input/Input.h"
 #include "../GameBase/MiniGameBase.h"
-
-const float FRAME_RATE = 60;
-const float CHANGE_ANIME_TIME = 0.1f;
-const int   ANIME_IMG_MAX = 6;
+#include "../Animation/Animation.h"
 
 #define GRAVITY		0.18f //重力
 #define JUMPPOWER	1.0f  //ジャンプパワー
 
 #define PLAYER_HEIGHT 64
 #define PLAYER_WIDTH  32
-
-//アニメの種類
-enum EAnimeKind
-{
-	EAnimeKindWalk,	//歩きアニメ 0
-	EAnimeKindJump,	//ジャンプアニメ 1
-
-	EAnimeKindNum,		//アニメ数 2
-};
 
 class Player {
 private:
@@ -29,18 +17,8 @@ private:
 	float PlayerNext_X; //プレイヤー次座標
 	float PlayerNext_Y; //プレイヤー次座標
 
-	int	  Handle[EAnimeKindNum][ANIME_IMG_MAX];
-
-	//現在のアニメの種類
-	EAnimeKind currentAnimeKind;
-
-	float AnimeTime;	//アニメ時間
-	int   AnimeIndex;	//アニメ番号
-
-	//各アニメの画像使用数
-	int animeUsedNum[EAnimeKindNum];
-
 	MiniGameBase gamebase;
+	cAnimation   anime;
 	
 public:
 	float Yspeed;		//プレイヤーのYスピード

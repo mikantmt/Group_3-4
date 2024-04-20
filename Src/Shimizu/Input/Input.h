@@ -15,3 +15,6 @@ bool IsKeyKeep(int key_code);
 
 //‚½‚Á‚½¡—£‚³‚ê‚½‚©
 bool IsKeyRelease(int key_code);
+
+//’Pƒ‚É‰Ÿ‚³‚ê‚Ä‚¢‚é‚©
+bool IsButtonDown(int key_code);

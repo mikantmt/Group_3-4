@@ -66,3 +66,13 @@ bool IsKeyRelease(int key_code)
 		return false;
 	}
 }
+
+//単純に押されているか
+bool IsButtonDown(int key_code)
+{
+	//現フレで押されている（前フレの状態は関係なし）
+	if (currentKeyBuf[key_code] == 1)
+		return true;
+
+	return false;
+}
