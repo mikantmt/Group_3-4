@@ -192,4 +192,8 @@ void Play::MapCollision() {
 			}
 		}
 	}
+
+	if (collision.IsHitRect(9568, 0, 32, SCREEN_SIZE_Y, player.GetPosX(), player.GetPosY(), 32, 64)) {
+		g_CurrentSceneId = SCENE_ID_FIN_PLAY;
+	}
 }
