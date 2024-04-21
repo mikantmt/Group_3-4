@@ -4,8 +4,10 @@
 void Play::Init()
 {
 	player.Init();
-
 	maps.Init();
+
+	sound.Init();
+	sound.Step(SOUND_TYPE_2, DX_PLAYTYPE_LOOP);
 
 	// スコアの初期化
 	Score::Init();
@@ -45,6 +47,7 @@ void Play::Draw()
 // プレイ終了処理
 void Play::Fin()
 {
+	sound.Fin();
 	// プレイシーンに遷移
 	g_CurrentSceneId = SCENE_ID_INIT_RESULT;
 }

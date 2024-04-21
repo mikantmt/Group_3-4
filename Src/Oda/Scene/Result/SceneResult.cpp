@@ -6,6 +6,9 @@ void Result::Init()
 	// ハイスコアの更新
 	Score::Update();
 
+	sound.Init();
+	sound.Step(SOUND_TYPE_1, DX_PLAYTYPE_LOOP);
+
 	// リザルト背景ハンドル
 	ResultImgHandle[RESULT_BACKGROUND] = LoadGraph(RESULT_BG_PATH);
 	ResultImgHandle[RESULT_RETURN] = LoadGraph(RETURN_IMG_PATH);
@@ -68,6 +71,8 @@ void Result::Fin()
 	{
 		DeleteGraph(ResultImgHandle[ImgIndex]);
 	}
+
+	sound.Fin();
 
 	// 透明度変数
 	Transparency = 0;

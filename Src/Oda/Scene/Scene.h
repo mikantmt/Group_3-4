@@ -3,6 +3,7 @@
 #include "../../Common.h"
 #include "../../Shimizu/Input/Input.h"
 #include "../../Shimizu/Collision/Collision.h"
+#include "../../Shimizu/Sound/Sound.h"
 
 
 class Scene {
@@ -12,6 +13,7 @@ class Scene {
 		virtual void Draw() = 0;
 		virtual void Fin()  = 0;
 
+		cSound sound;
 };
 
 enum SCENE_ID

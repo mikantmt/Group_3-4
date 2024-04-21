@@ -5,6 +5,9 @@ void Title::Init()
 {
 	collision.Init();
 
+	sound.Init();
+	sound.Step(SOUND_TYPE_3, DX_PLAYTYPE_LOOP);
+
 	// タイトル画像ハンドル
 	TitleImgHandle[TITLE_BACKGROUND] = LoadGraph(TITLE_BG_PATH);
 	TitleImgHandle[TITLE_START] = LoadGraph(START_IMG_PATH);
@@ -68,6 +71,8 @@ void Title::Fin()
 	{
 		DeleteGraph(TitleImgHandle[ImgIndex]);
 	}
+
+	sound.Fin();
 
 	// 透明度変数
 	Transparency = 0;
