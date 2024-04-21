@@ -1,16 +1,20 @@
 #pragma once
 #include "DxLib.h"
+#include "../GameBase/MiniGameBase.h"
+
 const int MAPCIP_X_SIZE = 32;
 const int MAPCIP_Y_SIZE = 32;
 const int MAP_SIZE = 32;
 
 const int MAPCIP_X_MAXNUM = 300;
-const int MAPCIP_Y_MAXNUM = 24;
+const int MAPCIP_Y_MAXNUM = 25;
 
 //マップの種類
 enum MAP_TYPE
 {
 	MAP_TYPE_1 = 0,	//Map1
+	MAP_TYPE_2,
+	MAP_TYPE_3,
 
 	MAP_TYPE_NUM,
 };
@@ -42,7 +46,9 @@ private:
 	//csvのファイルパス
 	const char CsvFilePath[MAP_TYPE_NUM][256] =
 	{
-		"../Data/Map_csv/Map2.csv",	//MAP_TYPE_STAGE1
+		"../Data/Map_csv/Map1.csv",	//MAP_TYPE_STAGE1
+		"../Data/Map_csv/Map2.csv",
+		"../Data/Map_csv/Map3.csv",
 	};
 
 	//マップチップのファイルパス
@@ -64,6 +70,9 @@ private:
 	};
 
 	int MapCipHandle[MAPIMAGE_TYPE_NUM];
+	int GoalHandle;
+
+	MiniGameBase gamebase;
 
 public:
 

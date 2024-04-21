@@ -57,7 +57,7 @@ void Play::MapCollision() {
 	{
 		for (int mapIndexX = 0; mapIndexX < MAPCIP_X_MAXNUM; mapIndexX++)
 		{
-			if (maps.m_FileReadMapData[mapIndexY][mapIndexX] == -1)
+			if (maps.m_FileReadMapData[mapIndexY][mapIndexX] != 0)
 				continue;
 
 			// š‚±‚±‚ðl‚¦‚é
@@ -116,7 +116,7 @@ void Play::MapCollision() {
 	{
 		for (int mapIndexX = 0; mapIndexX < MAPCIP_X_MAXNUM; mapIndexX++)
 		{
-			if (maps.m_FileReadMapData[mapIndexY][mapIndexX] == -1)
+			if (maps.m_FileReadMapData[mapIndexY][mapIndexX] != 0)
 				continue;
 
 			// š‚±‚±‚ðl‚¦‚é

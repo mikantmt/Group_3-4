@@ -1,13 +1,15 @@
 #include "MapChip.h"
 
 void MapChip::Init() {
-	MapID = MAP;
+	MapID = gamebase.ScopingRand(0, 2);
 
 	// âÊëúÉçÅ[Éh
 	LoadDivGraph(MapCipFilePath[MAP],
 		MapCipNum[MAP],
 		MapCipImageSplitNum[MAP][0], MapCipImageSplitNum[MAP][1],
 		MAPCIP_X_SIZE, MAPCIP_Y_SIZE, MapCipHandle);
+
+	GoalHandle = LoadGraph("../Data/PlayScene/Goal.png");
 
 	Read();
 }
@@ -17,6 +19,8 @@ void MapChip::Step() {
 }
 
 void MapChip::Draw(int X) {
+	DrawGraph(9568 - X, 0, GoalHandle, true);
+
 	for (int MapChipYIndex = 0; MapChipYIndex < MAPCIP_Y_MAXNUM; MapChipYIndex++) {
 		for (int MapChipXIndex = 0; MapChipXIndex < MAPCIP_X_MAXNUM; MapChipXIndex++) {
 				int mapciptype = m_FileReadMapData[MapChipYIndex][MapChipXIndex];
