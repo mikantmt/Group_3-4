@@ -8,7 +8,7 @@ void Result::Init()
 	Score::Update();
 
 	// リザルト背景ハンドル
-	ResultBGHandle = LoadGraph(RESULT_BG_PATH);
+	ResultImgHandle[RESULT_BACKGROUND] = LoadGraph(RESULT_BG_PATH);
 
 	// タイトルのループ処理へ遷移
 	g_CurrentSceneId = SCENE_ID_LOOP_RESULT;
@@ -46,7 +46,7 @@ void Result::Draw()
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
 	// リザルト背景描画
-	DrawGraph(0, 0, ResultBGHandle, true);
+	DrawGraph(0, 0, ResultImgHandle[RESULT_BACKGROUND], true);
 
 	DrawFormatString(SCREEN_SIZE_X / 2, SCREEN_SIZE_Y / 2, GetColor(0, 255, 0), "リザルト");
 }
@@ -54,8 +54,11 @@ void Result::Draw()
 // タイトル終了処理
 void Result::Fin()
 {
-	// リザルト背景ハンドル
-	DeleteGraph(ResultBGHandle);
+	// リザルト画像ハンドル
+	for (int ImgIndex = 0; ImgIndex < RESULT_IMG_NUM; ImgIndex++)
+	{
+		DeleteGraph(ResultImgHandle[ImgIndex]);
+	}
 
 	// プレイシーンに遷移
 	g_CurrentSceneId = SCENE_ID_INIT_TITLE;

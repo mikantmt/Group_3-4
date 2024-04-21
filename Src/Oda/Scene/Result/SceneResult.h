@@ -1,12 +1,22 @@
 #pragma once
 #include "../../Scene/Scene.h"
 
-// リザルトの背景パス
+// 画像パス
 constexpr char RESULT_BG_PATH[128] = "../Data/ResultScene/TentativeClearBG.png";
+constexpr char RETURN_IMG_PATH[128] = "../Data/ResultScene/ReturnTitle.png";
+constexpr char AGAIN_IMG_PATH[128] = "../Data/ResultScene/StartAgain.png";
+
+enum ResultImgHandle {
+	RESULT_BACKGROUND,
+	RESULT_RETURN,
+	RESULT_AGAIN,
+
+	RESULT_IMG_NUM,
+};
 
 class Result : public Scene {
 private:
-	int ResultBGHandle;		// リザルト背景ハンドル
+	int ResultImgHandle[RESULT_IMG_NUM];		// リザルト画像ハンドル
 
 public:
 	Collision collision;
