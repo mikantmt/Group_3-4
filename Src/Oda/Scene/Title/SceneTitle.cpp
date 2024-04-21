@@ -1,24 +1,14 @@
 #include "SceneTitle.h"
-#include "../../Score/Score.h"
 
 // タイトル初期化
 void Title::Init()
 {
-	// スコアの初期化
-	Score::Init();
-
 	collision.Init();
 
 	// タイトル画像ハンドル
 	TitleImgHandle[TITLE_BACKGROUND] = LoadGraph(TITLE_BG_PATH);
 	TitleImgHandle[TITLE_START] = LoadGraph(START_IMG_PATH);
 	TitleImgHandle[TITLE_QUIT] = LoadGraph(QUIT_IMG_PATH);
-
-	// 画像サイズ
-	for (int SizeIndex = 0; SizeIndex < TITLE_SELECT_NUM; SizeIndex++)
-	{
-		ImgSize[SizeIndex] = IMG_SIZE_SMALL;
-	}
 
 	// セレクト変数
 	Select = TITLE_SELECT_NOTHING;

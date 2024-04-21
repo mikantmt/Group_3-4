@@ -4,6 +4,7 @@
 #include "../../../Shimizu/MapChip/MapChip.h"
 #include "../../../Shimizu/Collision/Collision.h"
 #include "../../../Shimizu/Screen/Screen.h"
+#include "../../Score/Score.h"
 
 class Play : public Scene {
 private:

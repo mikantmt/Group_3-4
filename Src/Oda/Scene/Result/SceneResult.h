@@ -1,5 +1,6 @@
 #pragma once
 #include "../../Scene/Scene.h"
+#include "../../Score/Score.h"
 
 // 画像パス
 constexpr char RESULT_BG_PATH[128] = "../Data/ResultScene/TentativeClearBG.png";
@@ -21,9 +22,24 @@ enum ResultImgHandle {
 	RESULT_IMG_NUM,
 };
 
+enum ResultSelect {
+	RESULT_SELECT_RETURN,
+	RESULT_SELECT_AGAIN,
+	RESULT_SELECT_NOTHING,
+
+	RESULT_SELECT_NUM,
+};
+
 class Result : public Scene {
 private:
-	int ResultImgHandle[RESULT_IMG_NUM];		// リザルト画像ハンドル
+	// リザルト画像ハンドル
+	int ResultImgHandle[RESULT_IMG_NUM];
+
+	// セレクト変数
+	int Select;
+
+	// 透明度変数
+	int Transparency;
 
 public:
 	Collision collision;
@@ -41,4 +57,16 @@ public:
 	void Draw();
 	// タイトル終了処理
 	void Fin();
+
+	// 選択描画処理
+	void DrawSelect();
+
+	// タイトルに戻る処理
+	void Return();
+
+	// ゲーム終了処理
+	void Again();
+
+	// セレクト変数処理
+	void SelectProcessing();
 };

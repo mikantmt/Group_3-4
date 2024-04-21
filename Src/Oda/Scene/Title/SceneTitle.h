@@ -1,5 +1,6 @@
 #pragma once
 #include "../../Scene/Scene.h"
+#include "../../Score/Score.h"
 
 // 画像パス
 constexpr char TITLE_BG_PATH[128] = "../Data/TitleScene/TentativeTitleBG.png";
@@ -33,9 +34,6 @@ class Title : public Scene {
 private:
 	// タイトル画像ハンドル
 	int TitleImgHandle[TITLE_IMG_NUM];
-
-	// 画像サイズ
-	float ImgSize[TITLE_SELECT_NUM];
 
 	// セレクト変数
 	int Select;

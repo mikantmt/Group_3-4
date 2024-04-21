@@ -7,6 +7,9 @@ void Play::Init()
 
 	maps.Init();
 
+	// スコアの初期化
+	Score::Init();
+
 	BackGroundHandle = LoadGraph("../Data/PlayScene/BackGround.png");
 
 	// タイトルのループ処理へ遷移
