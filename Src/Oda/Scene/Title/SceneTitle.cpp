@@ -40,10 +40,6 @@ void Title::Step()
 
 	// セレクト変数処理
 	SelectProcessing();
-
-	if (IsKeyPush(KEY_INPUT_A)) {
-		g_CurrentSceneId = SCENE_ID_FIN_TITLE;
-	}
 }
 
 // タイトル描画処理
@@ -59,8 +55,6 @@ void Title::Draw()
 
 	// 選択描画処理
 	DrawSelect();
-
-	DrawFormatString(SCREEN_SIZE_X / 2, SCREEN_SIZE_Y / 2, GetColor(0, 255, 0), "タイトル");
 }
 
 // タイトル終了処理

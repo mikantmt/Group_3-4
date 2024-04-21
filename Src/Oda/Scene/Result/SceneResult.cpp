@@ -40,10 +40,6 @@ void Result::Step()
 	}
 
 	SelectProcessing();
-
-	if (IsKeyPush(KEY_INPUT_A)) {
-		g_CurrentSceneId = SCENE_ID_FIN_RESULT;
-	}
 }
 
 // タイトル描画処理
@@ -59,8 +55,6 @@ void Result::Draw()
 
 	// 選択描画処理
 	DrawSelect();
-
-	DrawFormatString(SCREEN_SIZE_X / 2, SCREEN_SIZE_Y / 2, GetColor(0, 255, 0), "リザルト");
 }
 
 // タイトル終了処理

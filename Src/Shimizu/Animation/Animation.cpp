@@ -5,6 +5,9 @@ void cAnimation::Init() {
 	Handle[EAnimeKindWalk][1] = LoadGraph("../Data/PlayScene/player/Rabbit2.png");
 	animeUsedNum[EAnimeKindWalk] = 2;
 
+	Handle[EAnimeKindJump][0] = LoadGraph("../Data/PlayScene/player/Jump.png");
+	animeUsedNum[EAnimeKindJump] = 1;
+
 	currentAnimeKind = EAnimeKindWalk;
 	AnimeIndex = 0;
 	AnimeTime = 0.0f;

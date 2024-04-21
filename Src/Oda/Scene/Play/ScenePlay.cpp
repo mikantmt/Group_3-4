@@ -40,8 +40,6 @@ void Play::Draw()
 	maps.Draw(screen.GetScreenX());
 
 	player.Draw(screen.GetScreenX());
-
-	DrawFormatString(SCREEN_SIZE_X / 2, SCREEN_SIZE_Y / 2, GetColor(0, 255, 0), "プレイ");
 }
 
 // プレイ終了処理
