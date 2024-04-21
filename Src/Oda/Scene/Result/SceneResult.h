@@ -14,6 +14,9 @@ const int RETURN_IMG_SIZE_H = 70;
 const int AGAIN_IMG_SIZE_W = 350;
 const int AGAIN_IMG_SIZE_H = 70;
 
+// フォントパス
+constexpr char FONT_PATH[128] = "../Data/Font/Qarmic_sans_Abridged.ttf";
+
 enum ResultImgHandle {
 	RESULT_BACKGROUND,		// リザルト背景
 	RESULT_RETURN,			// タイトルに戻る
@@ -56,6 +59,17 @@ private:
 	// 透明度変数
 	int Transparency;
 
+	// フォントハンドル
+	LPCSTR FontPath;
+
+	//スコアフォント
+	int FontScore;
+	int FontHighScore;
+
+	// 文字列の描画幅を取得
+	int DrawScoreWidth;
+	int DrawHighScoreWidth;
+
 public:
 	Collision collision;
 
@@ -75,6 +89,9 @@ public:
 
 	// 選択描画処理
 	void DrawSelect();
+
+	// スコア描画処理
+	void DrawScore();
 
 	// タイトルに戻る処理
 	void Return();

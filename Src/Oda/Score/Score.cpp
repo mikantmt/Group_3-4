@@ -9,7 +9,7 @@ int Score::HighScoreNum;	// ハイスコアの値
 // スコアの初期化
 void Score::Init()
 {
-	Score::ScoreNum = 0;
+	Score::ScoreNum = 100;
 }
 
 // ハイスコアの初期化

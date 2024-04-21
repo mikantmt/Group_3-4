@@ -23,6 +23,23 @@ void Result::Init()
 	// 透明度変数
 	Transparency = TRANSPARENCY_HALF;
 
+	// フォントのロード
+	FontPath = FONT_PATH; // 読み込むフォントファイルのパス
+	if (AddFontResourceEx(FontPath, FR_PRIVATE, NULL) > 0) {
+	}
+	else {
+		// フォント読込エラー処理
+		MessageBox(NULL, "フォント読込失敗", "", MB_OK);
+	}
+
+	//スコアフォント
+	FontScore = CreateFontToHandle("Qarmic sans", 96, 4, DX_FONTTYPE_ANTIALIASING_4X4);
+	FontHighScore = CreateFontToHandle("Qarmic sans", 96, 4, DX_FONTTYPE_ANTIALIASING_4X4);
+
+	// 文字列の描画幅を取得
+	DrawScoreWidth = GetDrawStringWidth("100", -1);
+	DrawHighScoreWidth = GetDrawStringWidth("100", -1);
+
 	// タイトルのループ処理へ遷移
 	g_CurrentSceneId = SCENE_ID_LOOP_RESULT;
 }
@@ -30,7 +47,6 @@ void Result::Init()
 // タイトル通常処理
 void Result::Step()
 {
-
 	if (m_blendfrag) {
 		m_BlendAlpha += 3;
 	}
@@ -61,6 +77,9 @@ void Result::Draw()
 
 	// 選択描画処理
 	DrawSelect();
+
+	// スコア描画処理
+	DrawScore();
 }
 
 // タイトル終了処理
@@ -76,6 +95,21 @@ void Result::Fin()
 
 	// 透明度変数
 	Transparency = 0;
+
+	//スコアフォント
+	FontScore = 0;
+	FontHighScore = 0;
+
+	// 文字列の描画幅を取得
+	DrawScoreWidth = 0;
+	DrawHighScoreWidth = 0;
+
+	// フォントのアンロード
+	if (RemoveFontResourceEx(FontPath, FR_PRIVATE, NULL)) {
+	}
+	else {
+		MessageBox(NULL, "Qarmic sans", "", MB_OK);
+	}
 
 	// シーンセレクトが[タイトルに戻る]であれば
 	if (Select[RESULT_SELECT_SCENE] == RESULT_SCENE_SELECT_RETURN)
@@ -132,6 +166,16 @@ void Result::DrawSelect()
 		DrawRotaGraph(SCREEN_SIZE_X / 4, (SCREEN_SIZE_Y / 2) + 200, IMG_SIZE_SMALL, 0.0f, ResultImgHandle[RESULT_AGAIN], false, false);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, TRANSPARENCY_MINIMUM);
 	}
+}
+
+// スコア描画処理
+void Result::DrawScore()
+{
+	// スコア
+	DrawFormatStringToHandle((SCREEN_SIZE_X - DrawScoreWidth) / 2, (SCREEN_SIZE_Y / 4) - 50, GetColor(0, 0, 0), FontScore, "%d", Score::ScoreNum);
+
+	// ハイスコア
+	DrawFormatStringToHandle((SCREEN_SIZE_X - DrawHighScoreWidth) / 2, (SCREEN_SIZE_Y / 2) - 25, GetColor(0, 0, 0), FontHighScore, "%d", Score::HighScoreNum);
 }
 
 // タイトルに戻る処理
