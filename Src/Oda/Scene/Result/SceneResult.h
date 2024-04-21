@@ -6,6 +6,13 @@ constexpr char RESULT_BG_PATH[128] = "../Data/ResultScene/TentativeClearBG.png";
 constexpr char RETURN_IMG_PATH[128] = "../Data/ResultScene/ReturnTitle.png";
 constexpr char AGAIN_IMG_PATH[128] = "../Data/ResultScene/StartAgain.png";
 
+// ‰æ‘œ‚Ì‘å‚«‚³
+const int RETURN_IMG_SIZE_W = 350;
+const int RETURN_IMG_SIZE_H = 70;
+
+const int AGAIN_IMG_SIZE_W = 350;
+const int AGAIN_IMG_SIZE_H = 70;
+
 enum ResultImgHandle {
 	RESULT_BACKGROUND,
 	RESULT_RETURN,

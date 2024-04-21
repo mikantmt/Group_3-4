@@ -13,15 +13,6 @@ const int START_IMG_SIZE_H = 70;
 const int QUIT_IMG_SIZE_W = 350;
 const int QUIT_IMG_SIZE_H = 70;
 
-// 画像描画サイズ
-static const float IMG_SIZE_SMALL = 0.9f;
-static const float IMG_SIZE_BIG = 1.1f;
-
-// 透明度
-static const int TRANSPARENCY_MAX = 256;
-static const int TRANSPARENCY_HALF = 128;
-static const int TRANSPARENCY_MINIMUM = 0;
-
 enum TitleImgHandle {
 	TITLE_BACKGROUND,
 	TITLE_START,
