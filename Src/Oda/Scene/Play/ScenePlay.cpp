@@ -163,4 +163,33 @@ void Play::MapCollision() {
 			}
 		}
 	}
+
+	//ばねとの当たり判定
+	for (int mapIndexY = 0; mapIndexY < MAPCIP_Y_MAXNUM; mapIndexY++)
+	{
+		for (int mapIndexX = 0; mapIndexX < MAPCIP_X_MAXNUM; mapIndexX++)
+		{
+			int Ax = player.GetPosX();
+			int Ay = player.GetPosY();
+			int Aw = PLAYER_WIDTH;
+			int Ah = PLAYER_HEIGHT;
+
+			// オブジェクトの情報
+			int Bx = mapIndexX * MAPCIP_X_SIZE;
+			int By = mapIndexY * MAPCIP_Y_SIZE;
+			int Bw = MAP_SIZE;
+			int Bh = MAP_SIZE;
+
+			if (maps.m_FileReadMapData[mapIndexY][mapIndexX] == 2) {
+				if (collision.IsHitRect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh)) {
+					player.JumpFlg = false;
+					player.AirFlg = false;
+					player.Yspeed = 0.0f;
+					player.JumpCount = 0.0f;
+
+					player.Yspeed = player.Yspeed - 3.0f;
+				}
+			}
+		}
+	}
 }
