@@ -23,11 +23,25 @@ enum TitleImgHandle {
 };
 
 enum TitleSelect {
-	TITLE_SELECT_START,
-	TITLE_SELECT_QUIT,
-	TITLE_SELECT_NOTHING,
+	TITLE_SELECT_IMG,		// 画像
+	TITLE_SELECT_SCENE,		// シーン
 
-	TITLE_SELECT_NUM,
+	TITLE_SELECT_NUM		// 2
+};
+
+enum TitleImgSelect {
+	TITLE_IMG_SELECT_START,		// はじめ
+	TITLE_IMG_SELECT_QUIT,		// おわり
+	TITLE_IMG_SELECT_NOTHING,	// 画像なし
+
+	TITLE_IMG_SELECT_NUM		// 3
+};
+
+enum TitleSceneSelect {
+	TITLE_SCENE_SELECT_START,	// はじめ
+	TITLE_SCENE_SELECT_QUIT,	// おわり
+
+	TITLE_SCENE_SELECT_NUM		// 2
 };
 
 class Title : public Scene {
@@ -36,7 +50,7 @@ private:
 	int TitleImgHandle[TITLE_IMG_NUM];
 
 	// セレクト変数
-	int Select;
+	int Select[TITLE_SELECT_NUM];
 
 	// 透明度変数
 	int Transparency;

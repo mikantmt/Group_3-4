@@ -11,7 +11,10 @@ void Title::Init()
 	TitleImgHandle[TITLE_QUIT] = LoadGraph(QUIT_IMG_PATH);
 
 	// セレクト変数
-	Select = TITLE_SELECT_NOTHING;
+	for (int SelectIndex = 0; SelectIndex < TITLE_SELECT_NUM; SelectIndex++)
+	{
+		Select[SelectIndex] = 0;
+	}
 
 	// 透明度変数
 	Transparency = TRANSPARENCY_HALF;
@@ -65,15 +68,41 @@ void Title::Fin()
 	{
 		DeleteGraph(TitleImgHandle[ImgIndex]);
 	}
+
+	// 透明度変数
+	Transparency = 0;
 	
-	// プレイシーンに遷移
-	g_CurrentSceneId = SCENE_ID_INIT_PLAY;
+	// シーンセレクトが[はじめ]であれば
+	if (Select[TITLE_SELECT_SCENE] == TITLE_SCENE_SELECT_START)
+	{
+		// セレクト変数
+		for (int SelectIndex = 0; SelectIndex < TITLE_SELECT_NUM; SelectIndex++)
+		{
+			Select[SelectIndex] = 0;
+		}
+
+		// プレイシーンに遷移
+		g_CurrentSceneId = SCENE_ID_INIT_PLAY;
+	}
+	// シーンセレクトが[おわり]であれば
+	else if (Select[TITLE_SELECT_SCENE] == TITLE_SCENE_SELECT_QUIT)
+	{
+		// セレクト変数
+		for (int SelectIndex = 0; SelectIndex < TITLE_SELECT_NUM; SelectIndex++)
+		{
+			Select[SelectIndex] = 0;
+		}
+
+		// ゲーム終了
+		DxLib_End();
+	}
 }
 
 // 選択描画処理
 void Title::DrawSelect()
 {
-	if (Select == TITLE_SELECT_START)
+	// 画像セレクトが[はじめ]であれば
+	if (Select[TITLE_SELECT_IMG] == TITLE_IMG_SELECT_START)
 	{
 		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 150, IMG_SIZE_BIG, 0.0f, TitleImgHandle[TITLE_START], false, false);
 
@@ -81,7 +110,8 @@ void Title::DrawSelect()
 		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 250, IMG_SIZE_SMALL, 0.0f, TitleImgHandle[TITLE_QUIT], false, false);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, TRANSPARENCY_MINIMUM);
 	}
-	else if (Select == TITLE_SELECT_QUIT)
+	// 画像セレクトが[おわり]であれば
+	else if (Select[TITLE_SELECT_IMG] == TITLE_IMG_SELECT_QUIT)
 	{
 		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 250, IMG_SIZE_BIG, 0.0f, TitleImgHandle[TITLE_QUIT], false, false);
 		
@@ -89,7 +119,8 @@ void Title::DrawSelect()
 		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 150, IMG_SIZE_SMALL, 0.0f, TitleImgHandle[TITLE_START], false, false);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, TRANSPARENCY_MINIMUM);
 	}
-	else if (Select == TITLE_SELECT_NOTHING)
+	// 画像セレクトが[画像なし]であれば
+	else if (Select[TITLE_SELECT_IMG] == TITLE_IMG_SELECT_NOTHING)
 	{
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, TRANSPARENCY_HALF);
 		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 150, IMG_SIZE_SMALL, 0.0f, TitleImgHandle[TITLE_START], false, false);
@@ -100,12 +131,15 @@ void Title::DrawSelect()
 
 // スタート処理
 void Title::Start() {
-	// セレクトをStartに変更
-	Select = TITLE_SELECT_START;
+	// 画像セレクトを[はじめ]に変更
+	Select[TITLE_SELECT_IMG] = TITLE_IMG_SELECT_START;
 
 	// 画像をクリックしたら
 	if (collision.IsClickOnRect((SCREEN_SIZE_X / 2) - (START_IMG_SIZE_W / 2), ((SCREEN_SIZE_Y / 2) + 150) - (START_IMG_SIZE_H / 2), START_IMG_SIZE_W, START_IMG_SIZE_H))
 	{
+		// シーンセレクトを[はじめ]に変更
+		Select[TITLE_SELECT_SCENE] = TITLE_SCENE_SELECT_START;
+
 		// タイトル終了シーンへ
 		g_CurrentSceneId = SCENE_ID_FIN_TITLE;
 	}
@@ -114,14 +148,17 @@ void Title::Start() {
 
 // ゲーム終了処理
 void Title::QuitGame() {
-	// セレクトをQuitに変更
-	Select = TITLE_SELECT_QUIT;
+	// 画像セレクトを[おわり]に変更
+	Select[TITLE_SELECT_IMG] = TITLE_IMG_SELECT_QUIT;
 
 	// 画像をクリックしたら
 	if (collision.IsClickOnRect((SCREEN_SIZE_X / 2) - (QUIT_IMG_SIZE_W / 2), ((SCREEN_SIZE_Y / 2) + 250) - (QUIT_IMG_SIZE_H / 2), QUIT_IMG_SIZE_W, QUIT_IMG_SIZE_H))
 	{
-		// ゲーム終了
-		DxLib_End();
+		// シーンセレクトを[おわり]に変更
+		Select[TITLE_SELECT_SCENE] = TITLE_SCENE_SELECT_QUIT;
+
+		// タイトル終了シーンへ
+		g_CurrentSceneId = SCENE_ID_FIN_TITLE;
 	}
 }
 
@@ -139,6 +176,7 @@ void Title::SelectProcessing() {
 	}
 	else
 	{
-		Select = TITLE_SELECT_NOTHING;
+		// 画像セレクトを[画像なし]に変更
+		Select[TITLE_SELECT_IMG] = TITLE_IMG_SELECT_NOTHING;
 	}
 }

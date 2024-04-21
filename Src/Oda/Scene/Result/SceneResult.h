@@ -15,20 +15,35 @@ const int AGAIN_IMG_SIZE_W = 350;
 const int AGAIN_IMG_SIZE_H = 70;
 
 enum ResultImgHandle {
-	RESULT_BACKGROUND,
-	RESULT_RETURN,
-	RESULT_AGAIN,
+	RESULT_BACKGROUND,		// リザルト背景
+	RESULT_RETURN,			// タイトルに戻る
+	RESULT_AGAIN,			// もう一度
 
-	RESULT_IMG_NUM,
+	RESULT_IMG_NUM			// 3
 };
 
 enum ResultSelect {
-	RESULT_SELECT_RETURN,
-	RESULT_SELECT_AGAIN,
-	RESULT_SELECT_NOTHING,
+	RESULT_SELECT_IMG,		// 画像
+	RESULT_SELECT_SCENE,	// シーン
 
-	RESULT_SELECT_NUM,
+	RESULT_SELECT_NUM		// 2
 };
+
+enum ResultImgSelect {
+	RESULT_IMG_SELECT_RETURN,	// タイトルに戻る画像
+	RESULT_IMG_SELECT_AGAIN,	// もう一度画像
+	RESULT_IMG_SELECT_NOTHING,	// 画像なし
+
+	RESULT_IMG_SELECT_NUM		// 3
+};
+
+enum ResultSceneSelect {
+	RESULT_SCENE_SELECT_RETURN,	// タイトルに戻る
+	RESULT_SCENE_SELECT_AGAIN,	// もう一度
+
+	RESULT_SCENE_SELECT_NUM		// 2
+};
+
 
 class Result : public Scene {
 private:
@@ -36,7 +51,7 @@ private:
 	int ResultImgHandle[RESULT_IMG_NUM];
 
 	// セレクト変数
-	int Select;
+	int Select[RESULT_SELECT_NUM];
 
 	// 透明度変数
 	int Transparency;
@@ -64,7 +79,7 @@ public:
 	// タイトルに戻る処理
 	void Return();
 
-	// ゲーム終了処理
+	// もう一度やる処理
 	void Again();
 
 	// セレクト変数処理

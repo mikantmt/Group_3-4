@@ -4,8 +4,8 @@
 #define SCREEN_SIZE_Y 800	//画面サイズ 縦
 
 // 画像描画サイズ
-static const float IMG_SIZE_SMALL = 0.9f;
-static const float IMG_SIZE_BIG = 1.1f;
+static const float IMG_SIZE_SMALL = 1.0f;
+static const float IMG_SIZE_BIG = 1.2f;
 
 // 透明度
 static const int TRANSPARENCY_MAX = 256;
