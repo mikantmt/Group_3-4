@@ -7,6 +7,7 @@ enum SOUND_TYPE
 	SOUND_TYPE_1 = 0,	
 	SOUND_TYPE_2,
 	SOUND_TYPE_3,
+	SOUND_TYPE_JUMP,
 
 	SOUND_TYPE_NUM,
 };
@@ -20,6 +21,7 @@ private:
 		"../Data/BGM/Stage1.mp3",	//Sound1
 		"../Data/BGM/Stage2.mp3",
 		"../Data/BGM/TitleBGM.mp3",
+		"../Data/BGM/Jump.mp3",
 	};
 
 	int Sound[SOUND_TYPE_NUM];

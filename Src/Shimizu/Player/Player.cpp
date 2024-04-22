@@ -11,6 +11,7 @@ void Player::Init() {
 	AirFlg    = false;
 
 	anime.Init();
+	sound.Init();
 
 	gamebase.Init();
 }
@@ -29,6 +30,9 @@ void Player::Step() {
 	if (IsKeyKeep(KEY_INPUT_SPACE) && JumpCount < 6 && !AirFlg) {
 		JumpFlg = true;
 		JumpCount++;
+	}
+	if (IsKeyPush(KEY_INPUT_SPACE) && JumpCount < 6 && !AirFlg) {
+		sound.Step(SOUND_TYPE_JUMP, DX_PLAYTYPE_BACK);
 	}
 
 	if (JumpFlg) {
@@ -52,6 +56,10 @@ void Player::Draw(float X) {
 	DrawBox(Player_X - X, Player_Y, Player_X + PLAYER_WIDTH - X, Player_Y + PLAYER_HEIGHT, GetColor(255, 0, 0), false);
 }
 
+void Player::Fin() {
+	anime.Fin();
+	sound.Fin();
+}
 
 void Player::SetNextPosX(int _posX) {
 	PlayerNext_X = (float)_posX;

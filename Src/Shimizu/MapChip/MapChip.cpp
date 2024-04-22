@@ -1,7 +1,7 @@
 #include "MapChip.h"
 
 void MapChip::Init() {
-	MapID = gamebase.ScopingRand(0, 2);
+	MapID = 2;
 
 	// ‰æ‘œƒ[ƒh
 	LoadDivGraph(MapCipFilePath[MAP],

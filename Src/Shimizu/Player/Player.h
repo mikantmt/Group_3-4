@@ -3,6 +3,7 @@
 #include "../Input/Input.h"
 #include "../GameBase/MiniGameBase.h"
 #include "../Animation/Animation.h"
+#include "../Sound/Sound.h"
 
 #define GRAVITY		0.18f //重力
 #define JUMPPOWER	1.0f  //ジャンプパワー
@@ -19,6 +20,7 @@ private:
 
 	MiniGameBase gamebase;
 	cAnimation   anime;
+	cSound       sound;
 	
 public:
 	float Yspeed;		//プレイヤーのYスピード
@@ -30,7 +32,7 @@ public:
 	void Init();
 	void Step();
 	void Draw(float X);
-
+	void Fin();
 
 	//座標の更新
 	void SetNextPosX(int _posX);
