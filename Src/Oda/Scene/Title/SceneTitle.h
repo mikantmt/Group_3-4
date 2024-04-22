@@ -3,7 +3,7 @@
 #include "../../Score/Score.h"
 
 // 画像パス
-constexpr char TITLE_BG_PATH[128] = "../Data/TitleScene/TentativeTitleBG.png";
+constexpr char TITLE_BG_PATH[128] = "../Data/TitleScene/Titlekari.png";
 constexpr char START_IMG_PATH[128] = "../Data/TitleScene/Start.png";
 constexpr char QUIT_IMG_PATH[128] = "../Data/TitleScene/QuitGame.png";
 constexpr char UPDATE_IMG_PATH[128] = "../Data/TitleScene/Update.png";
@@ -57,6 +57,9 @@ private:
 	// 角度変数
 	float Angle;
 
+	// 回転判定
+	bool isRotate;
+
 	// 透明度変数
 	int Transparency;
 
@@ -89,5 +92,8 @@ public:
 
 	// セレクト変数処理
 	void SelectProcessing();
+
+	// ハイスコア更新
+	void Updeta();
 };
 

@@ -13,6 +13,7 @@ static const int TRANSPARENCY_HALF = 128;
 static const int TRANSPARENCY_MINIMUM = 0;
 
 // Šp“x
-static const float ANGLE_MAX = 1.0f;
-static const float ANGLE_HALF = 0.5f;
-static const float ANGLE_MINIMUM = 0.0f;
+static const double PI = 3.1415926535897;
+static const float ANGLE_MAX = 180.0f * (float)PI / 180.0f;
+static const float ANGLE_HALF = 90.0f * (float)PI / 180.0f;
+static const float ANGLE_MINIMUM = 0.0f * (float)PI / 180.0f;

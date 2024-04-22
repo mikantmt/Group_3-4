@@ -23,6 +23,9 @@ void Title::Init()
 	// 角度変数
 	Angle = ANGLE_MINIMUM;
 
+	// 回転判定
+	isRotate = false;
+
 	// 透明度変数
 	Transparency = TRANSPARENCY_HALF;
 
@@ -50,6 +53,9 @@ void Title::Step()
 
 	// セレクト変数処理
 	SelectProcessing();
+
+	// ハイスコア更新
+	Updeta();
 }
 
 // タイトル描画処理
@@ -65,7 +71,6 @@ void Title::Draw()
 
 	// 更新画像描画
 	DrawRotaGraph(SCREEN_SIZE_X - 40, 40, 0.05f, Angle, TitleImgHandle[TITLE_UPDATE], true, false);
-	DrawBox(SCREEN_SIZE_X - 70, 10, SCREEN_SIZE_X - 70 + 60, 70, GetColor(255, 0, 0), false);
 
 	// 選択描画処理
 	DrawSelect();
@@ -87,6 +92,9 @@ void Title::Fin()
 
 	// 角度変数
 	Angle = ANGLE_MINIMUM;
+
+	// 回転判定
+	isRotate = false;
 	
 	// シーンセレクトが[はじめ]であれば
 	if (Select[TITLE_SELECT_SCENE] == TITLE_SCENE_SELECT_START)
@@ -120,27 +128,27 @@ void Title::DrawSelect()
 	// 画像セレクトが[はじめ]であれば
 	if (Select[TITLE_SELECT_IMG] == TITLE_IMG_SELECT_START)
 	{
-		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 150, IMG_SIZE_BIG, 0.0f, TitleImgHandle[TITLE_START], false, false);
+		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 150, IMG_SIZE_BIG, 0.0f, TitleImgHandle[TITLE_START], true, false);
 
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, TRANSPARENCY_HALF);
-		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 250, IMG_SIZE_SMALL, 0.0f, TitleImgHandle[TITLE_QUIT], false, false);
+		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 250, IMG_SIZE_SMALL, 0.0f, TitleImgHandle[TITLE_QUIT], true, false);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, TRANSPARENCY_MINIMUM);
 	}
 	// 画像セレクトが[おわり]であれば
 	else if (Select[TITLE_SELECT_IMG] == TITLE_IMG_SELECT_QUIT)
 	{
-		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 250, IMG_SIZE_BIG, 0.0f, TitleImgHandle[TITLE_QUIT], false, false);
+		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 250, IMG_SIZE_BIG, 0.0f, TitleImgHandle[TITLE_QUIT], true, false);
 		
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, TRANSPARENCY_HALF);
-		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 150, IMG_SIZE_SMALL, 0.0f, TitleImgHandle[TITLE_START], false, false);
+		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 150, IMG_SIZE_SMALL, 0.0f, TitleImgHandle[TITLE_START], true, false);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, TRANSPARENCY_MINIMUM);
 	}
 	// 画像セレクトが[画像なし]であれば
 	else if (Select[TITLE_SELECT_IMG] == TITLE_IMG_SELECT_NOTHING)
 	{
 		SetDrawBlendMode(DX_BLENDMODE_ALPHA, TRANSPARENCY_HALF);
-		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 150, IMG_SIZE_SMALL, 0.0f, TitleImgHandle[TITLE_START], false, false);
-		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 250, IMG_SIZE_SMALL, 0.0f, TitleImgHandle[TITLE_QUIT], false, false);
+		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 150, IMG_SIZE_SMALL, 0.0f, TitleImgHandle[TITLE_START], true, false);
+		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 250, IMG_SIZE_SMALL, 0.0f, TitleImgHandle[TITLE_QUIT], true, false);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, TRANSPARENCY_MINIMUM);
 	}
 }
@@ -194,5 +202,33 @@ void Title::SelectProcessing() {
 	{
 		// 画像セレクトを[画像なし]に変更
 		Select[TITLE_SELECT_IMG] = TITLE_IMG_SELECT_NOTHING;
+	}
+}
+
+// ハイスコア更新
+void Title::Updeta()
+{
+	// 画像をクリックしたら
+	if (collision.IsClickOnRect(SCREEN_SIZE_X - 70, 10, 60, 60))
+	{
+		// スコアを更新
+		Score::Update();
+
+		// 回転判定をtrue
+		isRotate = true;
+	}
+
+	// 回転判定がtrueであれば
+	if (isRotate == true) {
+		// 画像を回転させる
+		Angle -= 0.1f;
+	}
+
+	// 角度がマックスまで行ったら
+	if (Angle < -ANGLE_MAX)
+	{
+		// 角度と回転判定を初期化
+		isRotate = false;
+		Angle = 0;
 	}
 }

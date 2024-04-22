@@ -3,7 +3,7 @@
 #include "../../Score/Score.h"
 
 // ‰æ‘œƒpƒX
-constexpr char RESULT_BG_PATH[128] = "../Data/ResultScene/TentativeClearBG.png";
+constexpr char RESULT_BG_PATH[128] = "../Data/ResultScene/ResultBG.png";
 constexpr char RETURN_IMG_PATH[128] = "../Data/ResultScene/ReturnTitle.png";
 constexpr char AGAIN_IMG_PATH[128] = "../Data/ResultScene/StartAgain.png";
 
