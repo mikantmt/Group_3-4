@@ -130,7 +130,7 @@ void Title::DrawSelect()
 	{
 		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 150, IMG_SIZE_BIG, 0.0f, TitleImgHandle[TITLE_START], true, false);
 
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, TRANSPARENCY_HALF);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, TRANSPARENCY_CHANGE);
 		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 250, IMG_SIZE_SMALL, 0.0f, TitleImgHandle[TITLE_QUIT], true, false);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, TRANSPARENCY_MINIMUM);
 	}
@@ -139,14 +139,14 @@ void Title::DrawSelect()
 	{
 		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 250, IMG_SIZE_BIG, 0.0f, TitleImgHandle[TITLE_QUIT], true, false);
 		
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, TRANSPARENCY_HALF);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, TRANSPARENCY_CHANGE);
 		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 150, IMG_SIZE_SMALL, 0.0f, TitleImgHandle[TITLE_START], true, false);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, TRANSPARENCY_MINIMUM);
 	}
 	// ‰æ‘œƒZƒŒƒNƒg‚ª[‰æ‘œ‚È‚µ]‚Å‚ ‚ê‚Î
 	else if (Select[TITLE_SELECT_IMG] == TITLE_IMG_SELECT_NOTHING)
 	{
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, TRANSPARENCY_HALF);
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, TRANSPARENCY_CHANGE);
 		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 150, IMG_SIZE_SMALL, 0.0f, TitleImgHandle[TITLE_START], true, false);
 		DrawRotaGraph(SCREEN_SIZE_X / 2, (SCREEN_SIZE_Y / 2) + 250, IMG_SIZE_SMALL, 0.0f, TitleImgHandle[TITLE_QUIT], true, false);
 		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, TRANSPARENCY_MINIMUM);

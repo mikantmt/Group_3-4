@@ -11,6 +11,7 @@ static const float IMG_SIZE_BIG = 1.2f;
 static const int TRANSPARENCY_MAX = 256;
 static const int TRANSPARENCY_HALF = 128;
 static const int TRANSPARENCY_MINIMUM = 0;
+static const int TRANSPARENCY_CHANGE = 192;
 
 // Šp“x
 static const double PI = 3.1415926535897;

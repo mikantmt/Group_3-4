@@ -6,6 +6,7 @@
 constexpr char RESULT_BG_PATH[128] = "../Data/ResultScene/ResultBG.png";
 constexpr char RETURN_IMG_PATH[128] = "../Data/ResultScene/ReturnTitle.png";
 constexpr char AGAIN_IMG_PATH[128] = "../Data/ResultScene/StartAgain.png";
+constexpr char TROPHY_IMG_PATH[128] = "../Data/ResultScene/Trophy.png";
 
 // 画像の大きさ
 const int RETURN_IMG_SIZE_W = 350;
@@ -21,6 +22,7 @@ enum ResultImgHandle {
 	RESULT_BACKGROUND,		// リザルト背景
 	RESULT_RETURN,			// タイトルに戻る
 	RESULT_AGAIN,			// もう一度
+	RESULT_TROPHY,			// トロフィー
 
 	RESULT_IMG_NUM			// 3
 };
