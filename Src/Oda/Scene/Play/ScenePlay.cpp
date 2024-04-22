@@ -39,7 +39,7 @@ void Play::Draw()
 {
 	DrawGraph(0, 0, BackGroundHandle, true);
 
-	maps.Draw(screen.GetScreenX());
+	maps.Draw((int)screen.GetScreenX());
 
 	player.Draw(screen.GetScreenX());
 }
@@ -70,8 +70,8 @@ void Play::MapCollision() {
 			// ★ここを考える
 			// 矩形の当たり判定用のデータを準備
 			// プレイヤーの情報
-			int Ax = player.GetPosX();
-			int Ay = player.GetPosY();
+			int Ax = (int)player.GetPosX();
+			int Ay = (int)player.GetPosY();
 			int Aw = PLAYER_WIDTH;
 			int Ah = PLAYER_HEIGHT;
 
@@ -82,8 +82,8 @@ void Play::MapCollision() {
 			int Bh = MAP_SIZE;
 
 			// ※Y方向のみに移動したと仮定した座標で当たり判定をチェックします
-			Ay = player.GetNextPosY();
-			Ax = player.GetPosX();
+			Ay = (int)player.GetNextPosY();
+			Ax = (int)player.GetPosX();
 
 			// 当たっているかチェック
 			if (collision.IsHitRect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh)) {
@@ -129,8 +129,8 @@ void Play::MapCollision() {
 			// ★ここを考える
 			// 矩形の当たり判定用のデータを準備
 			// プレイヤーの情報
-			int Ax = player.GetPosX();
-			int Ay = player.GetPosY();
+			int Ax = (int)player.GetPosX();
+			int Ay = (int)player.GetPosY();
 			int Aw = PLAYER_WIDTH;
 			int Ah = PLAYER_HEIGHT;
 
@@ -170,8 +170,8 @@ void Play::MapCollision() {
 	{
 		for (int mapIndexX = 0; mapIndexX < MAPCIP_X_MAXNUM; mapIndexX++)
 		{
-			int Ax = player.GetPosX();
-			int Ay = player.GetPosY();
+			int Ax = (int)player.GetPosX();
+			int Ay = (int)player.GetPosY();
 			int Aw = PLAYER_WIDTH;
 			int Ah = PLAYER_HEIGHT;
 
@@ -194,7 +194,7 @@ void Play::MapCollision() {
 		}
 	}
 
-	if (collision.IsHitRect(9568, 0, 32, SCREEN_SIZE_Y, player.GetPosX(), player.GetPosY(), 32, 64)) {
+	if (collision.IsHitRect(9568, 0, 32, SCREEN_SIZE_Y, (int)player.GetPosX(), (int)player.GetPosY(), 32, 64)) {
 		g_CurrentSceneId = SCENE_ID_FIN_PLAY;
 	}
 }
