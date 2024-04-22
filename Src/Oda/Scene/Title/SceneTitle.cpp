@@ -12,12 +12,16 @@ void Title::Init()
 	TitleImgHandle[TITLE_BACKGROUND] = LoadGraph(TITLE_BG_PATH);
 	TitleImgHandle[TITLE_START] = LoadGraph(START_IMG_PATH);
 	TitleImgHandle[TITLE_QUIT] = LoadGraph(QUIT_IMG_PATH);
+	TitleImgHandle[TITLE_UPDATE] = LoadGraph(UPDATE_IMG_PATH);
 
 	// セレクト変数
 	for (int SelectIndex = 0; SelectIndex < TITLE_SELECT_NUM; SelectIndex++)
 	{
 		Select[SelectIndex] = 0;
 	}
+
+	// 角度変数
+	Angle = ANGLE_MINIMUM;
 
 	// 透明度変数
 	Transparency = TRANSPARENCY_HALF;
@@ -59,6 +63,10 @@ void Title::Draw()
 	// タイトル背景描画
 	DrawGraph(0, 0, TitleImgHandle[TITLE_BACKGROUND], true);
 
+	// 更新画像描画
+	DrawRotaGraph(SCREEN_SIZE_X - 40, 40, 0.05f, Angle, TitleImgHandle[TITLE_UPDATE], true, false);
+	DrawBox(SCREEN_SIZE_X - 70, 10, SCREEN_SIZE_X - 70 + 60, 70, GetColor(255, 0, 0), false);
+
 	// 選択描画処理
 	DrawSelect();
 }
@@ -75,7 +83,10 @@ void Title::Fin()
 	sound.Fin();
 
 	// 透明度変数
-	Transparency = 0;
+	Transparency = TRANSPARENCY_MINIMUM;
+
+	// 角度変数
+	Angle = ANGLE_MINIMUM;
 	
 	// シーンセレクトが[はじめ]であれば
 	if (Select[TITLE_SELECT_SCENE] == TITLE_SCENE_SELECT_START)

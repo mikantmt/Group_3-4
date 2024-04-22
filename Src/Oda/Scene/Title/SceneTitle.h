@@ -6,6 +6,7 @@
 constexpr char TITLE_BG_PATH[128] = "../Data/TitleScene/TentativeTitleBG.png";
 constexpr char START_IMG_PATH[128] = "../Data/TitleScene/Start.png";
 constexpr char QUIT_IMG_PATH[128] = "../Data/TitleScene/QuitGame.png";
+constexpr char UPDATE_IMG_PATH[128] = "../Data/TitleScene/Update.png";
 
 // 画像の大きさ
 const int START_IMG_SIZE_W = 350;
@@ -18,6 +19,7 @@ enum TitleImgHandle {
 	TITLE_BACKGROUND,
 	TITLE_START,
 	TITLE_QUIT,
+	TITLE_UPDATE,
 
 	TITLE_IMG_NUM,
 };
@@ -51,6 +53,9 @@ private:
 
 	// セレクト変数
 	int Select[TITLE_SELECT_NUM];
+
+	// 角度変数
+	float Angle;
 
 	// 透明度変数
 	int Transparency;

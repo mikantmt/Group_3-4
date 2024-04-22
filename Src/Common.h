@@ -11,3 +11,8 @@ static const float IMG_SIZE_BIG = 1.2f;
 static const int TRANSPARENCY_MAX = 256;
 static const int TRANSPARENCY_HALF = 128;
 static const int TRANSPARENCY_MINIMUM = 0;
+
+// Šp“x
+static const float ANGLE_MAX = 1.0f;
+static const float ANGLE_HALF = 0.5f;
+static const float ANGLE_MINIMUM = 0.0f;
