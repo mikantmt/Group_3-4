@@ -51,7 +51,7 @@ void Play::Fin()
 {
 	sound.Fin();
 
-	Score::Add((player.GetPosX() / 32) + (CarrotPoint * 10));
+	Score::Add(((int)player.GetPosX() / 16) + (CarrotPoint * 10));
 	// プレイシーンに遷移
 	g_CurrentSceneId = SCENE_ID_INIT_RESULT;
 }
