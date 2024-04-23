@@ -54,8 +54,8 @@ void Title::Step()
 	// セレクト変数処理
 	SelectProcessing();
 
-	// ハイスコア更新
-	Updeta();
+	// ハイスコア初期化
+	Reset();
 }
 
 // タイトル描画処理
@@ -206,7 +206,7 @@ void Title::SelectProcessing() {
 }
 
 // ハイスコア初期化
-void Title::Updeta()
+void Title::Reset()
 {
 	// 画像をクリックしたら
 	if (collision.IsClickOnRect(SCREEN_SIZE_X - 70, 10, 60, 60))

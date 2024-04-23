@@ -94,6 +94,6 @@ public:
 	void SelectProcessing();
 
 	// ハイスコア初期化
-	void Updeta();
+	void Reset();
 };
 
