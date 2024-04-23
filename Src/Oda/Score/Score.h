@@ -18,4 +18,7 @@ public:
 
 	// ハイスコアの更新
 	static void Update();
+
+	//ハイスコアの読み込み
+	static void Read();
 };

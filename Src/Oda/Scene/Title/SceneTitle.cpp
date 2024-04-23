@@ -8,6 +8,8 @@ void Title::Init()
 	sound.Init();
 	sound.Step(SOUND_TYPE_3, DX_PLAYTYPE_LOOP);
 
+	Score::Read();
+
 	// タイトル画像ハンドル
 	TitleImgHandle[TITLE_BACKGROUND] = LoadGraph(TITLE_BG_PATH);
 	TitleImgHandle[TITLE_START] = LoadGraph(START_IMG_PATH);

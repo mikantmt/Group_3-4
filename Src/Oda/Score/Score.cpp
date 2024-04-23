@@ -20,7 +20,7 @@ void Score::Reset()
 
 	// ファイルを開く(ない場合は自動で新規作成する)
 	errno_t err;
-	err = fopen_s(&Score::fScore, "Data/Score/Score.txt", "w+");
+	err = fopen_s(&Score::fScore, "../Data/Score/Score.txt", "w+");
 
 	// ファイルが開けた・または新規作成できた
 	if (Score::fScore != NULL)
@@ -47,13 +47,28 @@ void Score::Update()
 
 		// ファイルを開く(ない場合は自動で新規作成する)
 		errno_t err;
-		err = fopen_s(&Score::fScore, "Data/Score/Score.txt", "w+");
+		err = fopen_s(&Score::fScore, "../Data/Score/Score.txt", "w+");
 
 		// ファイルが開けた・または新規作成できた
 		if (Score::fScore != NULL)
 		{
+			fprintf(fScore, "%d", HighScoreNum);
+
 			// ファイルは閉じる
 			fclose(Score::fScore);
 		}
+	}
+}
+
+void Score::Read() {
+	errno_t err;
+	err = fopen_s(&Score::fScore, "../Data/Score/Score.txt", "r");
+
+	if (Score::fScore != NULL)
+	{
+		fscanf_s(fScore, "%d", &HighScoreNum);
+
+		// ファイルは閉じる
+		fclose(Score::fScore);
 	}
 }
