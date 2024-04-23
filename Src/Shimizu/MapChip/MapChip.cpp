@@ -1,7 +1,7 @@
 #include "MapChip.h"
 
 void MapChip::Init() {
-	MapID = 2;
+	MapID = 0;
 
 	// ‰æ‘œƒ[ƒh
 	LoadDivGraph(MapCipFilePath[MAP],

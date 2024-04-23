@@ -53,7 +53,6 @@ void Player::Step() {
 
 void Player::Draw(float X) {
 	anime.Draw(Player_X, Player_Y, X);
-	DrawBox(Player_X - X, Player_Y, Player_X + PLAYER_WIDTH - X, Player_Y + PLAYER_HEIGHT, GetColor(255, 0, 0), false);
 }
 
 void Player::Fin() {
