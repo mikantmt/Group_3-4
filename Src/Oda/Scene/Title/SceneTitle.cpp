@@ -205,14 +205,14 @@ void Title::SelectProcessing() {
 	}
 }
 
-// ハイスコア更新
+// ハイスコア初期化
 void Title::Updeta()
 {
 	// 画像をクリックしたら
 	if (collision.IsClickOnRect(SCREEN_SIZE_X - 70, 10, 60, 60))
 	{
-		// スコアを更新
-		Score::Update();
+		// ハイスコアを初期化
+		Score::Reset();
 
 		// 回転判定をtrue
 		isRotate = true;

@@ -93,7 +93,7 @@ public:
 	// セレクト変数処理
 	void SelectProcessing();
 
-	// ハイスコア更新
+	// ハイスコア初期化
 	void Updeta();
 };
 
