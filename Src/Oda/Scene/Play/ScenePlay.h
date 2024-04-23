@@ -18,6 +18,8 @@ private:
 	//ƒ}ƒbƒv‚Æ‚Ì“–‚½‚è”»’è
 	void MapCollision();
 public:
+	int CarrotPoint;
+
 	void Init();
 	void Step();
 	void Draw();

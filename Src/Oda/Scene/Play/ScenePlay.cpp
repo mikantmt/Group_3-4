@@ -14,6 +14,8 @@ void Play::Init()
 
 	BackGroundHandle = LoadGraph("../Data/PlayScene/BackGround.png");
 
+	CarrotPoint = 0;
+
 	// タイトルのループ処理へ遷移
 	g_CurrentSceneId = SCENE_ID_LOOP_PLAY;
 }
@@ -48,6 +50,8 @@ void Play::Draw()
 void Play::Fin()
 {
 	sound.Fin();
+
+	Score::Add((player.GetPosX() / 32) + (CarrotPoint * 10));
 	// プレイシーンに遷移
 	g_CurrentSceneId = SCENE_ID_INIT_RESULT;
 }
@@ -189,6 +193,30 @@ void Play::MapCollision() {
 					player.JumpCount = 0.0f;
 
 					player.Yspeed = player.Yspeed - 3.0f;
+				}
+			}
+		}
+	}
+
+	for (int mapIndexY = 0; mapIndexY < MAPCIP_Y_MAXNUM; mapIndexY++)
+	{
+		for (int mapIndexX = 0; mapIndexX < MAPCIP_X_MAXNUM; mapIndexX++)
+		{
+			int Ax = (int)player.GetPosX();
+			int Ay = (int)player.GetPosY();
+			int Aw = PLAYER_WIDTH;
+			int Ah = PLAYER_HEIGHT;
+
+			// オブジェクトの情報
+			int Bx = mapIndexX * MAPCIP_X_SIZE;
+			int By = mapIndexY * MAPCIP_Y_SIZE;
+			int Bw = MAP_SIZE;
+			int Bh = MAP_SIZE;
+
+			if (maps.m_FileReadMapData[mapIndexY][mapIndexX] == 3) {
+				if (collision.IsHitRect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh)) {
+					maps.m_FileReadMapData[mapIndexY][mapIndexX] = -1;
+					CarrotPoint += 1;
 				}
 			}
 		}
